@@ -1,0 +1,4 @@
+period_length: 48
+output_folder: ./data/
+alphapose_path: /media/ssd/gait-recognition/AlphaPose/
+videos_path: '/media/ssd/Location Dataset/youtube/'
