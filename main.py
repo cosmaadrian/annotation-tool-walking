@@ -6,7 +6,6 @@ import cv2
 import pandas as pd
 import pickle
 import json
-import utils
 import uuid
 
 coco2openpose = np.array([
@@ -70,7 +69,7 @@ def annotate(poses):
 
 parser = argparse.ArgumentParser(description='Do stuff.')
 parser.add_argument('--config_file', type = str, default='config.yaml')
-parser.add_argument('--video', type = str, default = 'test/manhattan_times-30.mkv')
+parser.add_argument('--video', type = str, default = 'test/manhattan_rain-30.mkv')
 # parser.add_argument('--video', type = str, default = 'test/village.mp4')
 args = parser.parse_args()
 
@@ -94,7 +93,7 @@ np.random.shuffle(filtered_track_ids)
 for idx, track_id in enumerate(filtered_track_ids):
     pose_idxs = np.argwhere(track_ids == track_id)
     poses = np.array([data[idx.ravel()[0]]['pose'] for idx in pose_idxs])
-    keypoints = normalise_data(poses)
+    poses = normalise_data(poses)
 
     sequence_start = np.random.randint(poses.shape[0] - args.period_length)
     pose_subset = poses[sequence_start: sequence_start + args.period_length]
